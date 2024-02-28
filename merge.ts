@@ -1,20 +1,32 @@
+function merge(
+  collection1: number[],
+  collection2: number[],
+  collection3: number[]
+): number[] {
+  const result: number[] = [];
+  let i = 0;
+  let j = 0;
+  let k = 0;
 
+  while (i < collection1.length && j < collection2.length && k < collection3.length) {
+    const smallest = Math.min(collection1[i], collection2[j], collection3[k]);
+    result.push(smallest);
 
-export function merge(collection1: number[], collection2: number[], collection3: number[]): number[] {
+    if (collection1[i] === smallest) {
+      i++;
+    } else if (collection2[j] === smallest) {
+      j++;
+    } else {
+      k++;
+    }
+  }
 
-    let result: number[] = [];
+  // Add remaining elements from collections that are not empty
+  result.push(...collection1.slice(i));
+  result.push(...collection2.slice(j).reverse());
+  result.push(...collection3.slice(k));
 
-    if (collection1.length != 0)
-        for (let i: number = 0; i <= collection1.length; i++)
-            result.push(collection1[i]);
-
-    if (collection2.length != 0)
-        for (let i: number = 0; i <= collection2.length; i++)
-            result.push(collection2[i]);
-    
-    if (collection3.length != 0)
-        for (let i: number = 0; i <= collection3.length; i++)
-            result.push(collection3[i]);
-
-    return result;
+  return result;
 }
+
+export { merge };
