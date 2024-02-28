@@ -1,5 +1,5 @@
 //import.
-import { merge } from './merge';
+import { merge } from "./merge";
 
 describe('merge function', () => {
     it('should merge sorted arrays', () => {
